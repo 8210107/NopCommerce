@@ -1,0 +1,98 @@
+﻿@using System.Globalization;
+@using Nop.Core.Domain
+@using StackExchange.Profiling
+@using Nop.Core.Configuration
+@using Nop.Core.Domain.Common
+@using Nop.Core.Domain.Seo
+@using Nop.Services.Events
+@using Nop.Services.Security
+@using Nop.Web.Framework.Events
+@using Nop.Core
+@using Nop.Core.Events
+@inject CommonSettings commonSettings
+@inject IEventPublisher eventPublisher
+@inject IPermissionService permissionService
+@inject IWorkContext workContext
+@inject SeoSettings seoSettings
+@inject AppSettings appSettings
+@inject StoreInformationSettings storeInformationSettings
+@inject Nop.Services.Localization.ILanguageService languageService
+@inject IThemeContext themeContext
+@{
+
+    var themeName = await themeContext.GetWorkingThemeNameAsync();
+
+
+    var displayMiniProfiler = appSettings.Get<CommonConfig>().MiniProfilerEnabled && await permissionService.AuthorizeAsync(StandardPermissionProvider.AccessProfiling);
+
+    NopHtml.AppendScriptParts(ResourceLocation.Footer, $"/Themes/{themeName}/script/main.js");
+    NopHtml.AppendScriptParts(ResourceLocation.Head, $"/lib_npm/jquery/jquery.min.js");
+    NopHtml.AppendScriptParts(ResourceLocation.Head, "/js/public.ajaxcart.js");
+}
+
+<!DOCTYPE html>
+<html lang="@CultureInfo.CurrentUICulture.TwoLetterISOLanguageName" dir="@Html.GetUIDirection(!await Html.ShouldUseRtlThemeAsync())" class="@NopHtml.GeneratePageCssClasses()">
+<head>
+    <title>@NopHtml.GenerateTitle()</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <meta name="description" content="@NopHtml.GenerateMetaDescription()" />
+    <meta name="keywords" content="@NopHtml.GenerateMetaKeywords()" />
+    <meta name="generator" content="nopCommerce" />
+    @NopHtml.GenerateHeadCustom()
+    @*This is used so that themes can inject content into the header*@
+    @await Html.PartialAsync("Head")
+    @NopHtml.GenerateCssFiles()
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeadHtmlTag })
+    
+    @NopHtml.GenerateCanonicalUrls()
+    @await Component.InvokeAsync("NewsRssHeaderLink")
+    @await Component.InvokeAsync("BlogRssHeaderLink")
+    @*Favicon - upload favicon.ico file to the root directory*@
+    @await Component.InvokeAsync("Favicon")
+    @if (displayMiniProfiler)
+    {
+        <mini-profiler />
+    }
+    @NopHtml.GenerateScripts(ResourceLocation.Head)
+    @NopHtml.GenerateInlineScripts(ResourceLocation.Head)
+
+
+</head>
+<body>
+    @RenderBody()
+
+    @*when jQuery migrate script logging is active you will see the log in the browser console*@
+    @if (commonSettings.JqueryMigrateScriptLoggingActive)
+    {
+        <script src="~/lib_npm/jquery-migrate/jquery-migrate.js"></script>
+    }
+    else
+    {
+        <script src="~/lib_npm/jquery-migrate/jquery-migrate.min.js"></script>
+    }
+
+    @*EShopper Scripts*@
+    
+   
+    <script src="~/Themes/@themeName/Scripts/styleSheetToogle.js"></script>
+    <script src="~/Themes/@themeName/Scripts/jquery.slimscroll.min.js"></script>
+    <script src="~/Themes/@themeName/Scripts/html5shiv.js"></script>
+    <script src="~/Themes/@themeName/Scripts/jquery.prettyPhoto.js"></script>
+    <script src="~/Themes/@themeName/Scripts/price-range.js"></script>
+    <script src="~/Themes/@themeName/Scripts/jquery.scrollUp.min.js"></script>
+    <script src="~/Themes/@themeName/Content/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+
+    @*resources*@
+    <script src="~/lib_npm/jquery-ui-dist/jquery-ui.min.js"></script>
+    <script src="~/lib_npm/jquery-validation/jquery.validate.min.js"></script>
+    <script src="~/lib_npm/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+    <script src="~/js/public.countryselect.js"></script>
+    <script src="~/js/public.ajaxcart.js" asp-location=Head></script>
+    <script src="~/js/public.common.js"></script>
+
+
+    @NopHtml.GenerateScripts(ResourceLocation.Footer)
+    @NopHtml.GenerateInlineScripts(ResourceLocation.Footer)
+</body>
+</html>

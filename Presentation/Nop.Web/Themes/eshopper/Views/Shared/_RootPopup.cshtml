@@ -1,0 +1,29 @@
+﻿@{
+    //resources
+    //Html.AppendScriptParts("~/Scripts/jquery.unobtrusive-ajax.min.js");
+    //Html.AppendScriptParts("~/Scripts/jquery-1.7.1.min.js");
+}
+<!DOCTYPE html>
+<html @Html.Partial("LanguageAttributes")>
+<head>
+    <title>@NopHtml.GenerateTitle(true)</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <meta name="description" content="@NopHtml.GenerateMetaDescription()" />
+    <meta name="keywords" content="@NopHtml.GenerateMetaKeywords()" />
+    @NopHtml.GenerateCssFiles()
+    @NopHtml.GenerateScripts(ResourceLocation.Head)
+    @NopHtml.GenerateCanonicalUrls()
+    @*Favicon - upload favicon.ico file to the root directory*@
+    @await Component.InvokeAsync("Favicon")
+    @await Component.InvokeAsync("Widget", new { widgetZone = "head_html_tag" })
+</head>
+<body>
+    @await Component.InvokeAsync("Widget", new { widgetZone = "body_start_html_tag_after" })
+    @RenderBody()
+    @await Component.InvokeAsync("Widget", new { widgetZone = "body_end_html_tag_before" })
+
+
+    @NopHtml.GenerateCssFiles()
+    @NopHtml.GenerateScripts(ResourceLocation.Footer)
+</body>
+</html>

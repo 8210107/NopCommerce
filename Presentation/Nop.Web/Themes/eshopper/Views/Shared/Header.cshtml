@@ -1,0 +1,53 @@
+﻿<div class="header-middle">
+    <!--header-middle-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="logo pull-left">
+                        @await Component.InvokeAsync("Logo")
+                </div>
+                <div class="btn-group pull-right">
+                        @await Component.InvokeAsync("TaxTypeSelector")
+
+                        @await Component.InvokeAsync("CurrencySelector")
+
+                        @await Component.InvokeAsync("LanguageSelector")
+
+
+                    @*<div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
+                US Dollar            <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+
+                <li><a href="/changecurrency/1?returnurl=%2f">US Dollar</a></li>
+                <li><a href="/changecurrency/6?returnurl=%2f">Euro</a></li>
+
+            </ul>
+
+        </div>*@
+                </div>
+            </div>
+                <div class="col-sm-8">
+                    <div class="shop-menu pull-right">
+                        @await Component.InvokeAsync("HeaderLinks")
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            @await Html.PartialAsync("_Notifications")
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+

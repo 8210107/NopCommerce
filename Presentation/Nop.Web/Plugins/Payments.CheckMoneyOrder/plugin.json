@@ -1,0 +1,16 @@
+﻿{
+  "Group": "Payment methods",
+  "FriendlyName": "Check / Money Order",
+  "SupportedVersions": [
+    "4.50"
+  ],
+  "Author": "nopCommerce team",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Payments.CheckMoneyOrder.dll",
+  "Description": "This plugin enables check and money order payments",
+  "LimitedToStores": [],
+  "LimitedToCustomerRoles": [],
+  "DependsOnSystemNames": [],
+  "SystemName": "Payments.CheckMoneyOrder",
+  "Version": "1.49"
+}
