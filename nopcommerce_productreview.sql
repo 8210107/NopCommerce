@@ -1,0 +1,67 @@
+-- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: nopcommerce
+-- ------------------------------------------------------
+-- Server version	8.0.31
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `productreview`
+--
+
+DROP TABLE IF EXISTS `productreview`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `productreview` (
+  `Id` int NOT NULL AUTO_INCREMENT,
+  `CustomerId` int NOT NULL,
+  `ProductId` int NOT NULL,
+  `StoreId` int NOT NULL,
+  `IsApproved` tinyint(1) NOT NULL,
+  `Title` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci,
+  `ReviewText` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci,
+  `ReplyText` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci,
+  `CustomerNotifiedOfReply` tinyint(1) NOT NULL,
+  `Rating` int NOT NULL,
+  `HelpfulYesTotal` int NOT NULL,
+  `HelpfulNoTotal` int NOT NULL,
+  `CreatedOnUtc` datetime NOT NULL,
+  PRIMARY KEY (`Id`),
+  KEY `IX_34DF548025246734401C64D1904FDC5119A405CC` (`CustomerId`),
+  KEY `IX_C3A2EB2CAD92A0F3C47CCA524FD2848BC0026B81` (`ProductId`),
+  KEY `IX_CCA2A4F066E9F5700F1C5792E4F4D96B78E887D6` (`StoreId`),
+  CONSTRAINT `FK_3C690095715D0BF8984649454E1A36AE5864B9B9` FOREIGN KEY (`CustomerId`) REFERENCES `customer` (`Id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_8F287941FE06F0E785170933128CFB1FFD7D4337` FOREIGN KEY (`ProductId`) REFERENCES `product` (`Id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_D161A45B1C012B5355F826D126E9F6EE3638C54B` FOREIGN KEY (`StoreId`) REFERENCES `store` (`Id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `productreview`
+--
+
+LOCK TABLES `productreview` WRITE;
+/*!40000 ALTER TABLE `productreview` DISABLE KEYS */;
+/*!40000 ALTER TABLE `productreview` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2022-12-31 11:49:54
