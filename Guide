@@ -1,0 +1,20 @@
+Guide 
+
+para instalar o projeto localmente façam o download o visual studio 2022 e do mysql workbench , criem uma base de dados com o nome nopcommerce e usem os sql dentro do projeto
+
+ou 
+
+se optarem por nao usar os sqls do projeto passam o outro passo á frente
+
+depois abram o projeto sln que esta dentro do git no visual studio 2022 e depois procurem o ficheiro nop.web deve estar dentro da pasta de presentation
+
+depois façam  ipp express para incializar localmente e se nao tiverem instalado vai levar para a instalaçao 
+
+na instalaçao definam o admin com as seguintes credenciais filiperebelo8@hotmail.com password admin 
+
+o resto deixem como quiserem
+
+ depois selecionem que querem usar o mysql na instalaçao e definao o vosso caminho
+ 
+ Exemplo:
+ Database=nopcommerce;Port=3307;Data Source=127.0.0.1;User Id=root; Password=xxxxxx
