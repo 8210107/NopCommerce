@@ -1,0 +1,16 @@
+﻿{
+  "Group": "Payment methods",
+  "FriendlyName": "Skrill",
+  "SupportedVersions": [
+    "4.50"
+  ],
+  "Author": "nopCommerce team",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Payments.Skrill.dll",
+  "Description": "This plugin allows paying with Skrill",
+  "LimitedToStores": [],
+  "LimitedToCustomerRoles": [],
+  "DependsOnSystemNames": [],
+  "SystemName": "Payments.Skrill",
+  "Version": "3.12"
+}

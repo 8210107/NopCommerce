@@ -4,10 +4,6 @@
   ],
   "InstalledPlugins": [
     {
-      "SystemName": "Payments.PayPalCommerce",
-      "Version": "1.10.2"
-    },
-    {
       "SystemName": "Payments.PayPalStandard",
       "Version": "1.71"
     },
@@ -86,6 +82,10 @@
     {
       "SystemName": "ExternalAuth.Facebook",
       "Version": "1.73"
+    },
+    {
+      "SystemName": "Payments.PayPalCommerce",
+      "Version": "1.10.2"
     }
   ],
   "PluginNamesToUninstall": [],
